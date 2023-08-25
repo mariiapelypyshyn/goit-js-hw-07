@@ -24,39 +24,27 @@ const renderList = (arr, container) => {
 renderList(galleryItems, galleryList);
 
 function modalOpen(event) {
-    event.preventDefault();
+  event.preventDefault();
     
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    };
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  };
 
-    const clickedImg = event.target;
+  const clickedImg = event.target;
 
-    const chosenImgSource = clickedImg.getAttribute("data-source");
+  const chosenImgSource = clickedImg.getAttribute("data-source");
 
-    const galleryItem = galleryItems
-        .find(item => item.original === chosenImgSource);
-    if (galleryItem) {
-        console.log(galleryItem.original);
-    };
+  const galleryItem = galleryItems
+    .find(item => item.original === chosenImgSource);
+  if (galleryItem) {
+    console.log(galleryItem.original);
+  };
 
-    const instance = basicLightbox.create(`
-		<div class="modal">
-    <img src="${galleryItem.original}"
-     data-source="${galleryItem.original}"/>
- </div>`)
+  const instance = basicLightbox.create(`
+    <img src="${galleryItem.original}" />`)
     
-    instance.show();
-
-    // window.addEventListener("keydown", closeModalEsc);
-};
-
-// function closeModalEsc(event) {
-//     if (event.code === 'Escape') {
-//         instance.close();
-//         window.removeEventListener("keydown", closeModalEsc)
-//     }
-// };
+  instance.show();
+  };
 
 
 galleryList.addEventListener("click", modalOpen);
